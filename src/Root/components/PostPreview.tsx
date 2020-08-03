@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const Card = styled.div``;
-
-const LinkContainer = styled.a`
+const LinkContainer = styled(Link)`
   display: block;
   text-decoration: inherit;
   color: inherit;
@@ -40,7 +39,7 @@ type PostPreviewProps = {
 
 export default function PostPreview(props: PostPreviewProps) {
   return (
-    <LinkContainer href={props.url}>
+    <LinkContainer to={props.url}>
       <Heading>{props.title}</Heading>
       {props.date && <sub>{props.date}</sub>}
       <p>{props.description}</p>
