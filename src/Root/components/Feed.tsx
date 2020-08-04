@@ -3,11 +3,16 @@ import styled from "styled-components";
 import { Switch, Route } from "react-router-dom";
 
 import PostPreview from "./PostPreview";
+import Loader from "./Loader";
+const PostsList = styled.ul`
+  margin: auto;
+  width: 35%;
+  liststyletype: "none";
+`;
 
 interface Post {
   title: string;
   subtitle: string;
-  body: string;
   imageUrl?: string;
   date: Date;
   slug: string;
@@ -27,43 +32,22 @@ export default function Feed() {
     getData();
   }, []);
 
-  function renderPost(routerProps: any) {
-    const postSlug = routerProps.match.params.slug;
-    const foundPost = posts.find((post) => post.slug === postSlug);
-    return foundPost ? (
-      <Post title={foundPost.title} />
-    ) : (
-      <h1>Not found, srry</h1>
-    );
-  }
-
-  const PostsList = styled.ul`
-    margin: auto;
-    width: 35%;
-    liststyletype: "none";
-  `;
-
   return (
     <React.Fragment>
-      <Switch>
-        <Route
-          path="/posts/:slug"
-          render={(routerProps: any) => renderPost(routerProps)}
-        />
-        <PostsList>
-          {isLoading ? (
-            <h1>Loading u fuck</h1>
-          ) : (
-            posts.map((post) => (
-              <PostPreview
-                url={`/posts/${post.slug}`}
-                title={post.title}
-                description={post.subtitle}
-              />
-            ))
-          )}
-        </PostsList>
-      </Switch>
+      <PostsList>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          posts.map((post) => (
+            <PostPreview
+              key={post.slug}
+              url={`/posts/${post.slug}`}
+              title={post.title}
+              description={post.subtitle}
+            />
+          ))
+        )}
+      </PostsList>
     </React.Fragment>
   );
 }
