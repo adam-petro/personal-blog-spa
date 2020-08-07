@@ -2,14 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const LinkContainer = styled(Link)`
+const Card = styled.div`
   display: block;
   text-decoration: inherit;
   color: inherit;
   border-radius: 5px;
-  width: 100%;
   padding: 5px 10px;
-  margin-bottom: 30px;
   box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, 0.75);
 
   &:hover {
@@ -39,10 +37,10 @@ type PostPreviewProps = {
 
 export default function PostPreview(props: PostPreviewProps) {
   return (
-    <LinkContainer to={props.url}>
+    <Card as={Link} to={props.url}>
       <Heading>{props.title}</Heading>
       {props.date && <sub>{props.date}</sub>}
       <p>{props.description}</p>
-    </LinkContainer>
+    </Card>
   );
 }

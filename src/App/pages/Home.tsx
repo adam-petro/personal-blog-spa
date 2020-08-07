@@ -1,10 +1,11 @@
 import React from "react";
 import Feed from "../components/Feed";
+import Banner from "../components/Banner";
 
 export default function Home() {
   return (
     <React.Fragment>
-      <h1>Welcome to my blog</h1>
+      <Banner />
       <Feed />
     </React.Fragment>
   );
