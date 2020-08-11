@@ -3,6 +3,25 @@ import Layout from "../components/Layout";
 import styled from "styled-components";
 import marked from "marked";
 
+const Div = styled.div`
+  display: flex;
+  flexdirection: row;
+  justifycontent: center;
+  width: 100%;
+`;
+
+const Form = styled.form`
+  margin: 0;
+  display: block;
+  flex-basis: 100%;
+  flex: 1;
+  width: 45%;
+`;
+
+const TextArea = styled.textarea`
+  resize: none;
+`;
+
 const Card = styled.div`
   display: block;
   text-decoration: inherit;
@@ -24,31 +43,15 @@ export default function NewPost() {
 
   return (
     <Layout padding={55}>
-      <div
-        style={{
-          height: "600px",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: " center",
-        }}
-      >
-        <form style={{ flexGrow: 1, flexBasis: 0 }}>
-          <textarea
-            style={{
-              padding: "3px",
-              display: "block",
-              width: "100%",
-              height: "100%",
-            }}
+      <Div>
+        <Form>
+          <TextArea
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={(e: any) => setText(e.target.value)}
           />
-        </form>
-        <Card
-          style={{ flexGrow: 1, flexBasis: 0 }}
-          dangerouslySetInnerHTML={{ __html: marked(text) }}
-        />
-      </div>
+        </Form>
+        <Card dangerouslySetInnerHTML={{ __html: marked(text) }} />
+      </Div>
     </Layout>
   );
 }
