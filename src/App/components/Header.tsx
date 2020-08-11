@@ -51,7 +51,7 @@ const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   &:hover {
-    box-shadow: ${({ theme }: any) => theme.boxShadow};
+    box-shadow: ${({ theme }: any) => theme.globalTheme.boxShadow};
   }
 `;
 

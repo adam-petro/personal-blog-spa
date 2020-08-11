@@ -8,7 +8,7 @@ const Div = styled.div`
   border-left: 1px solid ${({ theme }: any) => theme.borderColor};
   padding: 10px 10px 10px 15px;
   &:hover {
-    box-shadow: ${({ theme }: any) => theme.boxShadow};
+    box-shadow: ${({ theme }: any) => theme.globalTheme.boxShadow};
   }
 `;
 
